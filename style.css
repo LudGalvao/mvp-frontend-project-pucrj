@@ -1,140 +1,1085 @@
+/* ===== VARIABLES & BASE SETUP ===== */
+:root {
+    /* Primary Colors */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    
+    /* Neutral Colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    
+    /* Accent Colors */
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-pink: #ec4899;
+    --accent-green: #10b981;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Transitions */
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+    
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #D2B48C;
-    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-.header-custom {
-    background-color: #D2B48C; /* Branco com 50% de transparência */
-    padding: 15px 20px;
-    border-bottom: 1px solid #D2B48C;
-    margin-bottom: 30px;
-    display: flex; /* Adiciona Flexbox */
-    align-items: center; /* Alinha verticalmente os itens no centro */
-    gap: 15px; /* Espaçamento entre o logo e o título */
+/* ===== NAVIGATION ===== */
+.custom-navbar {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
+    padding: 0.8rem 0;
+    position: relative;
+    z-index: 1000;
 }
 
-.header-custom .logo {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333;
-    /* text-align: left; */ /* Não é mais necessário com flexbox */
-}
-
-.header-custom .titulo {
-    font-size: 1.2em;
-    color: #666;
-    margin-top: 0; /* Remove a margem superior que empurraria para baixo */
-    /* text-align: left; */ /* Não é mais necessário com flexbox */
-}
-
-body .main-content {
-    margin-top: 150px;
-    max-width: 1000px;
-    width: 90vw;
-    min-width: 320px;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    padding: 38px 48px 38px 48px;
-    border-radius: 28px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-    margin-bottom: 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Custom styles for the generate exercise button */
-#generateExerciseBtn {
-    margin: 32px 0 40px 0;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 16px rgba(0,123,255,0.10);
-}
-
-#exerciseDisplay {
-    width: 100%;
-    background: #f9fafb;
-    border: 1.5px solid #ececec;
-    border-radius: 18px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-    padding: 28px 32px 18px 32px;
-    min-height: 100px;
-    font-size: 1.13rem;
-    color: #222;
-    max-height: 340px;
-    overflow-y: auto;
-    margin-bottom: 0;
-}
-
-#exerciseDisplay h4 {
-    font-size: 1.35em;
+.navbar-brand {
     font-weight: 700;
-    margin-bottom: 12px;
+    font-size: 1.5rem;
+    text-decoration: none !important;
+    transition: var(--transition-normal);
 }
 
-#exerciseDisplay p {
-    margin-bottom: 1.1rem;
-    line-height: 1.7;
+.navbar-brand:hover {
+    transform: translateY(-2px);
 }
 
-#exerciseDisplay strong {
-    color: #1976d2;
-    font-weight: 700;
-    font-size: 1.13em;
-    letter-spacing: 0.2px;
-}
-
-@media (max-width: 1100px) {
-    body .main-content {
-        max-width: 98vw;
-        padding: 18px 2vw;
-    }
-    #exerciseDisplay {
-        padding: 12px 2vw;
-        font-size: 1.01rem;
-        max-height: 220px;
-    }
-    .exercise-title {
-        font-size: 1.7rem;
-        margin-bottom: 1rem;
-    }
-    .step-section {
-        padding: 8px 2vw 5px 2vw;
-        max-height: 90px;
-    }
-}
-
-.exercise-title {
-    text-align: center;
-    font-size: 2.6rem;
-    font-weight: 900;
-    color: #d32f2f;
-    margin-bottom: 1.8rem;
-    margin-top: 0.2rem;
-    letter-spacing: 1.2px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    text-shadow: 0 2px 12px rgba(211,47,47,0.10), 0 1px 0 #fff;
-    transition: font-size 0.2s;
-}
-
-.loading-spinner {
+.logo-container {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 32px 0 24px 0;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-normal);
 }
 
-.loading-spinner .spinner {
-    width: 44px;
-    height: 44px;
-    border: 5px solid #e0e0e0;
-    border-top: 5px solid #1976d2;
+.logo-container:hover {
+    transform: rotate(10deg) scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.brand-text {
+    background: linear-gradient(45deg, #ffffff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Poppins', sans-serif;
+}
+
+.time-indicator {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-lg);
+    color: white;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-normal);
+}
+
+.time-indicator:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.time-indicator i {
+    animation: pulse 2s infinite;
+}
+
+/* ===== HERO SECTION - SEM ESPAÇO BRANCO ===== */
+.hero-section {
+    height: 100vh; /* Altura total da viewport */
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #1d4ed8 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    margin: 0;
+}
+
+/* Estado quando exercício é gerado - REMOVIDO: Agora o exercício aparece como overlay */
+/* .hero-section.exercise-generated {
+    height: 25vh;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+} */
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Container principal da hero ocupa toda altura */
+.hero-section .container.h-100 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Seção principal centralizada */
+.hero-section .row.h-100 {
+    flex: 1;
+    margin: 0;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+    transition: var(--transition-normal);
+}
+
+.hero-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-badge i {
+    font-size: 1.1rem;
+    animation: sparkle 2s infinite;
+}
+
+.hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.btn-generate {
+    background: var(--success-gradient);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-normal);
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-generate:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.btn-generate i {
+    font-size: 1.2rem;
+    animation: glow 2s infinite;
+}
+
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-generate:hover .btn-shine {
+    left: 100%;
+}
+
+/* ===== STATS SECTION DENTRO DA HERO ===== */
+.stats-section-hero {
+    position: relative;
+    z-index: 10;
+    padding: 2rem 0 0 0;
+    transition: var(--transition-slow);
+}
+
+.stats-section-hero.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    pointer-events: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats-section-hero .stat-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    transition: var(--transition-normal);
+}
+
+.stats-section-hero .stat-item:hover {
+    transform: translateY(-10px);
+}
+
+.stats-section-hero .stat-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.stats-section-hero .stat-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-xl);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.stats-section-hero .stat-icon i {
+    font-size: 1.8rem;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.stats-section-hero .stat-item h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.stats-section-hero .stat-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ===== EXERCISE SECTION - OVERLAY NA HERO ===== */
+.exercise-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 10;
+    display: none;
+    overflow-y: auto;
+    padding: 1rem 0 2rem 0;
+}
+
+/* Custom Scrollbar for Exercise Section */
+.exercise-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.exercise-section::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.exercise-section::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+    border-radius: 10px;
+}
+
+.exercise-section::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.exercise-section.active {
+    display: block;
+    animation: slideInFromBottom 0.6s ease-out forwards;
+}
+
+.exercise-section.active ~ .hero-section,
+.hero-section.exercise-mode {
+    display: none;
+}
+
+/* ===== HISTORY SECTION - OVERLAY ===== */
+.history-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 10;
+    display: none;
+    overflow-y: auto;
+    padding: 6rem 0 2rem 0;
+}
+
+.history-section.active {
+    display: block;
+    animation: slideInFromBottom 0.6s ease-out forwards;
+}
+
+.history-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.history-content {
+    padding: 1rem 0;
+}
+
+.exercise-history-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.exercise-history-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.exercise-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.exercise-count {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.exercise-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0.8rem 0;
+}
+
+.history-timeline {
+    margin-top: 1rem;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-icon {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.timeline-icon i {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.timeline-content {
+    flex-grow: 1;
+}
+
+.timeline-date {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.timeline-status {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.no-history {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+}
+
+.no-history-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.no-history-icon i {
+    font-size: 2rem;
+    color: var(--text-muted);
+}
+
+.loading-history {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Close Button */
+#closeExerciseBtn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(108, 117, 125, 0.3);
+    color: #6c757d;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#closeExerciseBtn:hover {
+    background: rgba(220, 53, 69, 0.1);
+    border-color: #dc3545;
+    color: #dc3545;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+}
+
+.exercise-title-container {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.exercise-title-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.exercise-title-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+        margin-bottom: 1rem;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: -0.02em;
+}
+
+.exercise-title-container h2 i {
+    font-size: 2.2rem;
+    margin-right: 0.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    animation: bounce 2s infinite;
+}
+
+.exercise-card {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+    position: relative;
+    overflow: visible;
+}
+
+.exercise-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.exercise-card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.exercise-content {
+    position: relative;
+    z-index: 2;
+}
+
+.placeholder-content {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.placeholder-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.placeholder-icon i {
+    font-size: 2rem;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.placeholder-content h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.exercise-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.exercise-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.step-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.step-title {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.step-icon {
+    margin-right: 0.75rem;
+    font-size: 1.4rem;
+    color: var(--accent-blue);
+    animation: pulse 2s infinite;
+}
+
+.step-list {
+    list-style: none;
+    padding: 0;
+}
+
+.step-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 2rem;
+}
+
+.step-list li:before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ===== MODERN EXERCISE DESIGN ===== */
+.exercise-header-modern {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.exercise-type-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+.exercise-type-badge i {
+    font-size: 1.3rem;
+    margin-right: 0.8rem;
+    animation: sparkle 2s infinite;
+}
+
+.badge-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
+}
+
+.exercise-details-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.detail-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.description-card::before {
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.benefits-card::before {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.steps-card::before {
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.detail-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.detail-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.description-icon {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1d4ed8;
+}
+
+.benefits-icon {
+    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+    color: #dc2626;
+}
+
+.steps-icon {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #059669;
+}
+
+.detail-icon i {
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+.detail-card-header h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.detail-card-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Modern Steps Design */
+.steps-list-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.step-item-modern {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    border-left: 4px solid #10b981;
+    transition: all 0.3s ease;
+}
+
+.step-item-modern:hover {
+    transform: translateX(5px);
+    background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left-color: #0ea5e9;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.step-item-modern:hover .step-number {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+}
+
+.step-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+.no-steps {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* ===== ACTION BUTTON ===== */
+.action-container {
+    text-align: center;
+    padding: 2rem 0 0 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.action-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Action Button Integrado */
+.action-container-integrated {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.action-container-integrated.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#concluirExerciseBtn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 25px rgba(16, 185, 129, 0.3),
+        0 3px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#concluirExerciseBtn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 12px 35px rgba(16, 185, 129, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.15);
+    color: white;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+#concluirExerciseBtn i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    animation: checkmark 1s infinite;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+}
+
+/* ===== LOADING SPINNER ===== */
+.loading-spinner {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(102, 126, 234, 0.2);
+    border-left: 4px solid var(--accent-blue);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 16px;
+    margin: 0 auto 1rem;
+}
+
+.loading-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===== FOOTER ===== */
+.custom-footer {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 0;
+}
+
+.custom-footer p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* ===== HERO COMPACT TITLE ===== */
+.hero-compact-title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.hero-compact-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-compact-title h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-compact-title h3 i {
+    margin-right: 0.5rem;
+    animation: lightning 2s infinite;
+}
+
+.hero-compact-title .subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 @keyframes spin {
@@ -142,124 +1087,447 @@ body .main-content {
     100% { transform: rotate(360deg); }
 }
 
-.loading-spinner .loading-text {
-    color: #1976d2;
-    font-weight: 600;
-    font-size: 1.15rem;
-    letter-spacing: 0.5px;
-    text-align: center;
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
-.step-section {
-    background: #f1f8e9;
-    border: 1px solid #d0e6b6;
-    border-radius: 14px;
-    margin-top: 18px;
-    padding: 16px 22px 10px 22px;
-    box-shadow: 0 2px 8px rgba(76,175,80,0.07);
-    max-height: 140px;
-    overflow-y: auto;
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
-.step-title {
-    color: #388e3c;
-    font-size: 1.18em;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 6px;
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+    50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.6)); }
 }
 
-.step-icon {
-    font-size: 1.3em;
-    margin-right: 2px;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
-.step-list {
-    background: none;
-    border: none;
-    color: #222;
-    font-size: 1.08em;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0 0 0 18px;
-    padding: 0;
-    white-space: normal;
-    list-style: decimal inside;
+@keyframes checkmark {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
-.step-list li {
-    margin-bottom: 7px;
-    line-height: 1.7;
-    padding-left: 2px;
+@keyframes lightning {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+        transform: scale(1.1);
+    }
 }
 
-.concluir-btn-wrapper {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 18px;
+/* ===== ESTILOS ADICIONAIS PARA ÍCONES MODERNOS ===== */
+
+/* Ícones com gradiente e efeitos especiais */
+.bi-lightning-charge-fill,
+.bi-trophy-fill,
+.bi-stars,
+.bi-cpu-fill,
+.bi-bullseye,
+.bi-graph-up-arrow,
+.bi-rocket-takeoff-fill {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 
-#concluirExerciseBtn {
-    background: #22c55e;
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.13em;
-    border: none;
-    border-radius: 28px;
-    padding: 14px 32px 14px 28px;
-    box-shadow: 0 4px 16px rgba(34,197,94,0.10);
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    outline: none;
+/* Efeito especial para ícones de ação */
+.bi-check2-circle,
+.bi-arrow-right-circle-fill {
+    transition: var(--transition-normal);
 }
 
-#concluirExerciseBtn .btn-icon {
-    font-size: 1.3em;
-    margin-right: 4px;
-    display: flex;
-    align-items: center;
+.bi-check2-circle:hover,
+.bi-arrow-right-circle-fill:hover {
+    transform: scale(1.1);
 }
 
-#concluirExerciseBtn:hover {
-    background: #16a34a;
-    box-shadow: 0 8px 24px rgba(34,197,94,0.18);
-    transform: translateY(-2px) scale(1.03);
+/* Ícones pulsantes para loading */
+.bi-arrow-repeat.spin-icon {
+    animation: spin 1.5s linear infinite;
 }
 
-#concluir-btn-outer-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 32px;
-    margin-bottom: 32px;
+/* Ícones com glow effect */
+.bi-heart-pulse {
+    animation: heartbeat 2s ease-in-out infinite;
 }
 
-.clock-icon-wrapper {
-    position: fixed;
-    top: 38px;
-    right: 54px;
-    z-index: 100;
-    background: none;
+.bi-stopwatch {
+    animation: tick 1s ease-in-out infinite;
+}
+
+/* Ícones especiais do navbar */
+.logo-icon.bi-lightning-charge-fill {
+    animation: energize 3s ease-in-out infinite;
+}
+
+/* Ícones da seção de stats com hover especial */
+.stat-icon .bi-cpu-fill {
+    animation: process 2s ease-in-out infinite;
+}
+
+.stat-icon .bi-bullseye {
+    animation: target 3s ease-in-out infinite;
+}
+
+.stat-icon .bi-graph-up-arrow {
+    animation: grow 2.5s ease-in-out infinite;
+}
+
+/* ===== NOVAS ANIMAÇÕES PARA ÍCONES ===== */
+
+@keyframes heartbeat {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(220, 38, 127, 0.3));
+    }
+    50% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(220, 38, 127, 0.6));
+    }
+}
+
+@keyframes tick {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes energize {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+}
+
+@keyframes process {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
+    }
+    50% { 
+        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.7));
+    }
+}
+
+@keyframes target {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.3));
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+    }
+}
+
+@keyframes grow {
+    0% { 
+        transform: translateY(2px);
+        filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3));
+    }
+    50% { 
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
+    }
+    100% { 
+        transform: translateY(2px);
+        filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3));
+    }
+}
+
+/* Efeito especial para badge de exercício */
+.exercise-badge .bi-stars {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Hover effects melhorados para ícones */
+.detail-header i:hover {
+    transform: scale(1.2);
+    transition: var(--transition-fast);
+}
+
+/* Ícones de erro com animação especial */
+.bi-exclamation-triangle-fill {
+    animation: warning 1.5s ease-in-out infinite;
+}
+
+@keyframes warning {
+    0%, 100% { 
+        color: #f59e0b;
+        filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3));
+    }
+    50% { 
+        color: #f97316;
+        filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.6));
+    }
+}
+
+/* Melhorias para ícones em mobile */
+@media (max-width: 768px) {
+    .bi-lightning-charge-fill,
+    .bi-trophy-fill,
+    .bi-stars,
+    .bi-cpu-fill {
+        font-size: 1.4rem;
+    }
+    
+    .stat-icon i {
+        font-size: 1.8rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.4rem;
+    }
+}
+
+/* Estilos para o footer com ícones melhorados */
+.custom-footer .bi-heart-fill {
+    animation: heartbeat 2s ease-in-out infinite;
+    color: #ff6b6b !important;
+}
+
+.custom-footer .bi-gear-fill {
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Efeito especial para o botão de gerar exercício */
+.btn-generate .bi-stars {
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 100vh; /* Mantém altura total no mobile */
+    }
+    
+    /* REMOVIDO: Agora o exercício aparece como overlay
+    .hero-section.exercise-generated {
+        height: 30vh;
+    } */
+    
+    .stats-section-hero .stat-item {
+        padding: 1rem 0.5rem;
+    }
+    
+    .stats-section-hero .stat-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .stats-section-hero .stat-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .stats-section-hero .stat-item h4 {
+        font-size: 1rem;
+    }
+    
+    .stats-section-hero .stat-item p {
+        font-size: 0.85rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .exercise-content {
+        padding: 1.5rem;
+    }
+    
+    .step-section {
+        padding: 1.5rem;
+    }
+    
+    /* Modern Exercise Mobile Styles */
+    .exercise-type-badge {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .detail-card {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+    
+    .detail-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .detail-card-header h4 {
+        font-size: 1.2rem;
+    }
+    
+    .step-item-modern {
+        padding: 0.8rem;
+    }
+    
+    .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    #concluirExerciseBtn {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .action-container-integrated {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    .custom-footer .row {
+        text-align: center;
+    }
+    
+    .custom-footer .col-md-6:last-child {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .logo-container {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .brand-text {
+        font-size: 1.2rem;
+    }
+    
+    .time-indicator {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .btn-generate {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .exercise-title-container h2 {
+        font-size: 2rem;
+    }
+    
+    /* REMOVIDO: Agora o exercício aparece como overlay
+    .hero-section.exercise-generated {
+        height: 25vh;
+    } */
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .custom-navbar,
+    .floating-elements,
+    .btn-generate,
+    #concluirExerciseBtn,
+    .loading-spinner {
+        display: none !important;
+    }
+    
+    .hero-section {
+        background: none !important;
+        color: black !important;
+        min-height: auto !important;
+    }
+    
+    .exercise-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+}
+
+/* ===== FLOATING ELEMENTS ===== */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    z-index: 1;
 }
 
-#clockIcon svg {
-    width: 48px;
-    height: 48px;
-    display: block;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+.floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
 }
 
-@media (max-width: 700px) {
-    .clock-icon-wrapper {
-        top: 16px;
-        right: 10px;
-    }
-    #clockIcon svg {
-        width: 32px;
-        height: 32px;
-    }
+.element-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 6s;
+}
+
+.element-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+    animation-duration: 8s;
+}
+
+.element-3 {
+    width: 60px;
+    height: 60px;
+    top: 80%;
+    left: 70%;
+    animation-delay: 4s;
+    animation-duration: 7s;
 }
